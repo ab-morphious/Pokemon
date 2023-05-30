@@ -7,5 +7,5 @@ interface PokemonRepository {
     /**
      * Fetch paginated pokemon list
      */
-    fun getAllPokemon(): Single<List<Pokemon>>
+    fun getAllPokemon(page: Int): Single<List<Pokemon>>
 }

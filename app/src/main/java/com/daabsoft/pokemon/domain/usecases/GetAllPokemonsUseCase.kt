@@ -8,7 +8,7 @@ import javax.inject.Inject
 class GetAllPokemonUseCase @Inject constructor(
     private val repository: PokemonRepository
 ) {
-    operator fun invoke(): Single<List<Pokemon>> {
-        return repository.getAllPokemon()
+    operator fun invoke(page: Int): Single<List<Pokemon>> {
+        return repository.getAllPokemon(page)
     }
 }
