@@ -1,7 +1,8 @@
 package com.daabsoft.pokemon.di
 
 import android.content.Context
-import com.daabsoft.pokemon.core.Constants
+import com.daabsoft.pokemon.core.Constants.BASE_URL
+import com.daabsoft.pokemon.core.Constants.V_API
 import com.daabsoft.pokemon.data.remote.services.PokemonService
 import dagger.Module
 import dagger.Provides
@@ -32,7 +33,7 @@ object RetrofitModule {
     @Provides
     fun provideRetrofit(okHttpClient: OkHttpClient): PokemonService {
         return Retrofit.Builder()
-            .baseUrl(Constants.BASE_URL)
+            .baseUrl(BASE_URL + V_API)
             .client(okHttpClient)
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
