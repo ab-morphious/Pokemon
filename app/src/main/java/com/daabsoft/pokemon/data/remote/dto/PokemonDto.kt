@@ -11,7 +11,7 @@ data class PokemonDto(
     val url: String
 ) {
     fun toDomain() = Pokemon(
-        name,
-        url
+        name = name,
+        url = url
     )
 }
