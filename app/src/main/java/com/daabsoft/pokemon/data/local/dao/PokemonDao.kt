@@ -19,6 +19,6 @@ interface PokemonDao {
     /**
      * Get list of pokemons from db
      */
-    @Query("SELECT * FROM pokemon")
-    fun getPokemons(): Flowable<List<PokemonEntity>>
+    @Query("SELECT * FROM pokemon WHERE page = :page")
+    fun getPokemons(page: Int): Flowable<List<PokemonEntity>>
 }

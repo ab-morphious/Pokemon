@@ -1,9 +1,15 @@
 package com.daabsoft.pokemon.data.remote.dto
 
 import com.daabsoft.pokemon.domain.models.Pokemon
+import com.google.gson.annotations.SerializedName
 
 data class AllPokemonResponse(
-    val pokemons: List<PokemonDto>
+    @SerializedName("results")
+    val pokemons: List<PokemonDto>,
+    @SerializedName("count")
+    val count: Int,
+    @SerializedName("next") val next: String?,
+    @SerializedName("previous") val previous: String?
 )
 
 data class PokemonDto(

@@ -1,6 +1,7 @@
 package com.daabsoft.pokemon.domain.models
 
 import com.daabsoft.pokemon.core.Constants.IMAGE_BASE_URL
+import com.daabsoft.pokemon.data.local.entity.PokemonEntity
 
 data class Pokemon(
     val name: String,
@@ -13,4 +14,11 @@ data class Pokemon(
     }
 
     fun getImageMapped(): String = "${IMAGE_BASE_URL}${getId()}.png"
+
+    fun toEntitiy(page: Int) = PokemonEntity(
+        page = page,
+        name = name,
+        url = url,
+        imageUrl = imageUrl
+    )
 }
