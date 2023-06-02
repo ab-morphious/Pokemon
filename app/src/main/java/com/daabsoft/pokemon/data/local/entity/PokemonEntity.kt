@@ -9,8 +9,7 @@ data class PokemonEntity(
     val page: Int,
     @PrimaryKey
     val name: String,
-    val url: String,
-    var imageUrl: String?
+    val url: String
 ) {
     fun toDomain(): Pokemon = Pokemon(
         name,
