@@ -32,8 +32,6 @@ class PokemonRepositoryImpl constructor(
             val pokemons = it.pokemons
             pokemonDao.insertPokemons(pokemons.map { it.toDomain().toEntitiy(page) })
             Single.just(pokemons.map { it.toDomain() })
-        }.doOnError {
-            throw (it)
         }
     }
     companion object {
