@@ -18,6 +18,7 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object RetrofitModule {
+
     @Singleton
     @Provides
     fun provideOkHttp(context: Context): OkHttpClient {

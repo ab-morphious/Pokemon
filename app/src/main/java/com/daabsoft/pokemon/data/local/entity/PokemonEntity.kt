@@ -11,6 +11,14 @@ data class PokemonEntity(
     val name: String,
     val url: String
 ) {
+
+    @Entity(tableName = "movie_remote_keys")
+    data class PokemonRemoteKeys(
+        @PrimaryKey val page: Int,
+        val prevKey: Int?,
+        val nextKey: Int?
+    )
+
     fun toDomain(): Pokemon = Pokemon(
         name,
         url

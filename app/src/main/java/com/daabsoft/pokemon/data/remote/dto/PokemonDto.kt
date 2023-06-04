@@ -1,5 +1,7 @@
 package com.daabsoft.pokemon.data.remote.dto
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.daabsoft.pokemon.domain.models.Pokemon
 import com.google.gson.annotations.SerializedName
 

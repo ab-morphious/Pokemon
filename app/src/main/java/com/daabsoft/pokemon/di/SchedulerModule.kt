@@ -11,6 +11,7 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object SchedulerModule {
+
     @Singleton
     @Provides
     fun provideScheduler(): BaseSchedulerProvider {
