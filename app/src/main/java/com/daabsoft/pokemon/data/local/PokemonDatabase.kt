@@ -5,12 +5,14 @@ import androidx.room.RoomDatabase
 import com.daabsoft.pokemon.data.local.dao.PokemonDao
 import com.daabsoft.pokemon.data.local.dao.PokemonRemoteKeysRxDao
 import com.daabsoft.pokemon.data.local.dao.PokemonRxDao
+import com.daabsoft.pokemon.data.local.entity.PokemonDetailEntity
 import com.daabsoft.pokemon.data.local.entity.PokemonEntity
 
 @Database(
     entities = [
         PokemonEntity::class,
-        PokemonEntity.PokemonRemoteKeys::class
+        PokemonEntity.PokemonRemoteKeys::class,
+        PokemonDetailEntity::class
     ],
     exportSchema = false,
     version = 1

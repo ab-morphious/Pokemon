@@ -11,7 +11,7 @@ import org.junit.Rule
 import org.junit.Test
 import javax.inject.Inject
 
-class GetAllPokemonUseCaseTest {
+class GetPokemonDetailsUseCaseTest {
 
     @get:Rule
     val uncaughtRxJavaErrors = RxJavaUncaughtErrorRule()
@@ -19,18 +19,18 @@ class GetAllPokemonUseCaseTest {
 
     @Inject
     lateinit var fakePokemonRepository: FakePokemonRepository
-    private lateinit var getAllPokemonUseCase: GetAllPokemonUseCase
+    private lateinit var getPokemonDetailsUseCase: GetPokemonDetailsUseCase
     private val compositeDisposable = CompositeDisposable()
 
     @Before
     fun setup() {
         fakePokemonRepository = FakePokemonRepository()
-        getAllPokemonUseCase = GetAllPokemonUseCase(fakePokemonRepository)
+        getPokemonDetailsUseCase = GetPokemonDetailsUseCase(fakePokemonRepository)
     }
 
     @Test
     fun `Get all pokemon, returns correct pokemons`() {
-        val subscribe = getAllPokemonUseCase.invoke(0)
+        val subscribe = getPokemonDetailsUseCase.invoke(0)
             .subscribeOn(schedulerProvider.io()).subscribe { pokemons ->
                 assertThat(pokemons.size == 0).isTrue()
             }

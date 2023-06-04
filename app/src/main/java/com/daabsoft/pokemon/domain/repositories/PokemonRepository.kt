@@ -1,11 +1,13 @@
 package com.daabsoft.pokemon.domain.repositories
 
 import com.daabsoft.pokemon.domain.models.Pokemon
+import com.daabsoft.pokemon.domain.models.PokemonDetail
 import io.reactivex.Single
 
 interface PokemonRepository {
     /**
-     * Fetch paginated pokemon list
+     * get pokemon detail information
+     * @param id
      */
-    fun getAllPokemon(page: Int): Single<List<Pokemon>>
+    fun getPokemonDetail(name: String): Single<PokemonDetail>
 }

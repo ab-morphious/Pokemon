@@ -4,9 +4,9 @@ import com.daabsoft.pokemon.core.Constants.IMAGE_BASE_URL
 import com.daabsoft.pokemon.data.local.entity.PokemonEntity
 import java.lang.Exception
 
-interface data class Pokemon(
+data class Pokemon(
     val name: String,
-    val url: String,
+    val url: String
 ) {
     private fun getId(): Int {
         val splitPath = url.split("/")

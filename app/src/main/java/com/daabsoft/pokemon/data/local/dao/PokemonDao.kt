@@ -4,21 +4,22 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.daabsoft.pokemon.data.local.entity.PokemonEntity
-import io.reactivex.Flowable
+import com.daabsoft.pokemon.data.local.entity.PokemonDetailEntity
+import com.daabsoft.pokemon.domain.models.PokemonDetail
+import io.reactivex.Single
 
 @Dao
 interface PokemonDao {
 
     /**
-     * Insert pokemon to pokemon db
+     * Insert pokemon details to pokemon_detail db
      */
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertPokemons(pokemonEntity: List<PokemonEntity>): List<Long>
+    fun insertPokemonDetail(pokemonDetailEntity: PokemonDetailEntity): Long
 
     /**
-     * Get list of pokemons from db
+     * Get pokemon details from db
      */
-    @Query("SELECT * FROM pokemon WHERE page = :page")
-    fun getPokemons(page: Int): Flowable<List<PokemonEntity>>
+    @Query("SELECT * FROM pokemon_detail WHERE name = :name")
+    fun getPokemonDetail(name: String): Single<PokemonDetail>
 }
