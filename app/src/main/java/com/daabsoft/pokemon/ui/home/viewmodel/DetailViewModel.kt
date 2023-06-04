@@ -17,7 +17,7 @@ import javax.inject.Inject
 ) : ViewModel() {
 
     private val _pokemonDetail: MutableLiveData<Resource<PokemonDetail>> = MutableLiveData()
-    val pokemons: LiveData<Resource<PokemonDetail>>
+    val pokemonDetail: LiveData<Resource<PokemonDetail>>
         get() = _pokemonDetail
 
     val compositeDisposable = CompositeDisposable()

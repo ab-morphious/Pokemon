@@ -9,5 +9,19 @@
         android:id="@+id/homeFragment"
         android:name="com.daabsoft.pokemon.ui.home.fragment.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
+        <action
+            android:id="@+id/detailPokemonDirection"
+            app:destination="@id/detailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailFragment"
+        android:name="com.daabsoft.pokemon.ui.home.fragment.DetailFragment"
+        android:label="fragment_detail"
+        tools:layout="@layout/fragment_detail" >
+        <argument android:name="Pokemon" />
+    </fragment>
 </navigation>

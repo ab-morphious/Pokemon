@@ -5,4 +5,5 @@
     <string name="error">Something went wrong!</string>
     <string name="cancel">Cancel</string>
     <string name="retry">Retry</string>
+    <string name="error_get_detail">Couldn\'t get pokemon details</string>
 </resources>

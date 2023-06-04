@@ -13,27 +13,31 @@ import androidx.paging.LoadState
 import androidx.paging.map
 import androidx.recyclerview.widget.GridLayoutManager
 import com.daabsoft.pokemon.R
+import com.daabsoft.pokemon.core.Constants.keyArgsPokemon
 import com.daabsoft.pokemon.databinding.FragmentHomeBinding
+import com.daabsoft.pokemon.domain.models.Pokemon
+import com.daabsoft.pokemon.ui.home.PokemonRxAdapter
+import com.daabsoft.pokemon.ui.home.adapter.CellClickListener
 import com.daabsoft.pokemon.ui.home.adapter.LoadingGridStateAdapter
-import com.daabsoft.pokemon.ui.home.adapter.PokemonRxAdapter
 import com.daabsoft.pokemon.ui.home.viewmodel.HomeRxViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import io.reactivex.disposables.CompositeDisposable
 
 @AndroidEntryPoint
-class HomeFragment : Fragment() {
+class HomeFragment : Fragment(), CellClickListener {
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
 
     // instantiate rx viewmodel by delegates
     private val homeRxViewModel: HomeRxViewModel by activityViewModels<HomeRxViewModel>()
-
-    // private val homeViewModel: HomeViewModel by activityViewModels<HomeViewModel>()
     private lateinit var navController: NavController
     private lateinit var pokemonRxAdapter: PokemonRxAdapter
     private var compositeDisposable = CompositeDisposable()
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+    }
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -47,6 +51,7 @@ class HomeFragment : Fragment() {
     private fun setupHomeFragment() {
         navController = findNavController()
         pokemonRxAdapter = PokemonRxAdapter()
+        pokemonRxAdapter.setCellClickListener(this)
         binding.rvHome.layoutManager = GridLayoutManager(requireContext(), 2)
         binding.rvHome.adapter = pokemonRxAdapter
 
@@ -84,5 +89,11 @@ class HomeFragment : Fragment() {
     override fun onDestroy() {
         compositeDisposable.dispose()
         super.onDestroy()
+    }
+
+    override fun onCellClickListener(pokemon: Pokemon) {
+        val bundle = Bundle()
+        bundle.putParcelable(keyArgsPokemon, pokemon)
+        navController.navigate(R.id.action_homeFragment_to_detailFragment, bundle)
     }
 }

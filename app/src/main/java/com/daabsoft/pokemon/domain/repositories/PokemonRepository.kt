@@ -1,6 +1,5 @@
 package com.daabsoft.pokemon.domain.repositories
 
-import com.daabsoft.pokemon.domain.models.Pokemon
 import com.daabsoft.pokemon.domain.models.PokemonDetail
 import io.reactivex.Single
 
