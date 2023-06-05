@@ -8,5 +8,17 @@ data class PokemonDetailEntity(
     @PrimaryKey
     val name: String,
     val height: Float,
-    val weight: Float
+    val weight: Float,
+    val stats: List<StatElement>
+)
+
+data class StatElement(
+    val baseStat: Long,
+    val effort: Long,
+    val stat: StatStat
+)
+
+data class StatStat(
+    val name: String,
+    val url: String
 )

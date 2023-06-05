@@ -59,6 +59,14 @@ class DetailFragment : Fragment() {
     private fun updateDetailScreen(data: PokemonDetail) {
         binding.pokemonWeight.text = data.weight.toString()
         binding.pokemonHeight.text = data.height.toString()
+        binding.tvStatLabel0.text = data.stats[0].stat.name
+        binding.tvStatLabel1.text = data.stats[1].stat.name
+        binding.tvStatLabel2.text = data.stats[2].stat.name
+        binding.tvStatLabel3.text = data.stats[3].stat.name
+        binding.tvStat0.text = data.stats[0].baseStat.toString()
+        binding.tvStat1.text = data.stats[1].baseStat.toString()
+        binding.tvStat2.text = data.stats[2].baseStat.toString()
+        binding.tvStat3.text = data.stats[3].baseStat.toString()
     }
 
     private fun getPokemonDetail() {
