@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.bumptech.glide.Glide
@@ -38,8 +39,13 @@ class DetailFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setupDetailFragment()
         setupObserver()
         getPokemonDetail()
+    }
+
+    private fun setupDetailFragment() {
+        (requireActivity() as AppCompatActivity).supportActionBar?.title = getString(R.string.title_detail_fragment)
     }
 
     private fun setupObserver() {

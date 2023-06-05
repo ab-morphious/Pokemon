@@ -5,12 +5,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
-import androidx.paging.map
 import androidx.recyclerview.widget.GridLayoutManager
 import com.daabsoft.pokemon.R
 import com.daabsoft.pokemon.core.Constants.keyArgsPokemon
@@ -21,7 +21,6 @@ import com.daabsoft.pokemon.ui.home.adapter.CellClickListener
 import com.daabsoft.pokemon.ui.home.adapter.LoadingGridStateAdapter
 import com.daabsoft.pokemon.ui.home.viewmodel.HomeRxViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import io.reactivex.disposables.CompositeDisposable
 
 @AndroidEntryPoint
 class HomeFragment : Fragment(), CellClickListener {
@@ -48,6 +47,8 @@ class HomeFragment : Fragment(), CellClickListener {
     }
 
     private fun setupHomeFragment() {
+        (requireActivity() as AppCompatActivity).supportActionBar?.title = getString(R.string.title_home_fragment)
+
         navController = findNavController()
         pokemonRxAdapter = PokemonRxAdapter()
         pokemonRxAdapter.setCellClickListener(this)

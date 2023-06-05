@@ -1,9 +1,10 @@
 <resources>
     <string name="app_name">Pokemon</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="error">Something went wrong!</string>
     <string name="cancel">Cancel</string>
     <string name="retry">Retry</string>
     <string name="error_get_detail">Couldn\'t get pokemon details</string>
+    <string name="title_home_fragment">All Pokemons</string>
+    <string name="title_detail_fragment">Pokemon Detail</string>
 </resources>
