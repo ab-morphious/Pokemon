@@ -4,7 +4,10 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.test.filters.SmallTest
 import com.daabsoft.pokemon.core.BaseSchedulerProvider
 import com.daabsoft.pokemon.data.local.dao.PokemonDao
+import com.daabsoft.pokemon.data.local.dao.PokemonRxDao
 import com.daabsoft.pokemon.data.local.entity.PokemonEntity
+import com.daabsoft.pokemon.domain.models.Pokemon
+import com.daabsoft.pokemon.domain.models.PokemonDetail
 import com.google.common.truth.Truth.assertThat
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
@@ -35,12 +38,14 @@ class PokemonDaoTest {
     lateinit var testSchedulerProvider: BaseSchedulerProvider
 
     private lateinit var pokemonDao: PokemonDao
+    private lateinit var pokemonRxDao: PokemonRxDao
     private val disposable = CompositeDisposable()
 
     @Before
     fun setup() {
         hiltTestRule.inject()
         pokemonDao = pokemonDatabase.pokemonDao()
+        pokemonRxDao = pokemonDatabase.pokemonRxDao()
     }
 
     @After
@@ -51,19 +56,17 @@ class PokemonDaoTest {
 
     @Test
     fun insertNewPokemonShouldWork() {
-        val pokemon = PokemonEntity(
+        val pokemon1 = PokemonEntity(
+            1,
             name = "Pokeee",
-            url = "test url",
-            imageUrl = "iamgeurl.com"
+            url = "test url"
         )
-        pokemonDao.insertPokemons(listOf(pokemon))
+        val pokemon2 = PokemonEntity(
+            1,
+            name = "Pokeeemon 2",
+            url = "test url"
+        )
 
-        val add = disposable.add(
-            pokemonDao.getPokemons()
-                .subscribeOn(testSchedulerProvider.io())
-                .subscribe { pokemons ->
-                    assertThat(pokemons.size > 0).isTrue()
-                }
-        )
+        assertThat(pokemonRxDao.insertAll(listOf(pokemon1, pokemon2)).size > 0).isTrue()
     }
 }

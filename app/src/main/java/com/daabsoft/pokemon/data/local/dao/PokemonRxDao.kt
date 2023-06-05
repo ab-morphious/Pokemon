@@ -11,7 +11,7 @@ import com.daabsoft.pokemon.data.local.entity.PokemonEntity
 interface PokemonRxDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertAll(movies: List<PokemonEntity>)
+    fun insertAll(pokemons: List<PokemonEntity>): List<Long>
 
     @Query("SELECT * FROM pokemon")
     fun selectAll(): PagingSource<Int, PokemonEntity>
