@@ -9,6 +9,7 @@ import com.daabsoft.pokemon.data.datasource.GetPokemonsRxRemoteMediator
 import com.daabsoft.pokemon.data.datasource.GetPokemonsRxRemoteMediator.Companion.PAGE_SIZE
 import com.daabsoft.pokemon.data.local.PokemonDatabase
 import com.daabsoft.pokemon.data.local.entity.PokemonEntity
+import com.daabsoft.pokemon.domain.models.Pokemon
 import com.daabsoft.pokemon.domain.repositories.PokemonRxRepository
 import io.reactivex.Flowable
 import javax.inject.Inject

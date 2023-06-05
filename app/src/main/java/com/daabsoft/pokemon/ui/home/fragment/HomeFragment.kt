@@ -33,10 +33,10 @@ class HomeFragment : Fragment(), CellClickListener {
     private val homeRxViewModel: HomeRxViewModel by activityViewModels<HomeRxViewModel>()
     private lateinit var navController: NavController
     private lateinit var pokemonRxAdapter: PokemonRxAdapter
-    private var compositeDisposable = CompositeDisposable()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setupHomeFragment()
     }
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -44,7 +44,6 @@ class HomeFragment : Fragment(), CellClickListener {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
-        setupHomeFragment()
         return binding.root
     }
 
@@ -79,15 +78,12 @@ class HomeFragment : Fragment(), CellClickListener {
             }
         }
 
-        compositeDisposable.add(
-            homeRxViewModel.getAllPokemonsRx().subscribe {
-                pokemonRxAdapter.submitData(lifecycle, it.map { it.toDomain() })
-            }
-        )
+        homeRxViewModel.pokemonPagingData.observe(viewLifecycleOwner) {
+            pokemonRxAdapter.submitData(lifecycle, it)
+        }
     }
 
     override fun onDestroy() {
-        compositeDisposable.dispose()
         super.onDestroy()
     }
 
