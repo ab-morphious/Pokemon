@@ -4,7 +4,7 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.daabsoft.pokemon.core.Resource
 import com.daabsoft.pokemon.core.TestSchedulerProvider
 import com.daabsoft.pokemon.data.FakePokemonRepository
-import com.daabsoft.pokemon.domain.models.Pokemon
+import com.daabsoft.pokemon.domain.models.PokemonDetail
 import com.daabsoft.pokemon.domain.usecases.GetPokemonDetailsUseCase
 import com.daabsoft.utils.getOrAwaitValue
 import com.google.common.truth.Truth.assertThat
@@ -32,18 +32,9 @@ class DetailViewModelTest {
 
     @Test
     fun `getAll pokemons, gives livedata of pokemons`() {
-        val page = 1
-        detailViewModel.getAllPokemons(page)
-        val pokemons = detailViewModel.pokemons.getOrAwaitValue()
-        assertThat((pokemons as Resource.Success<List<Pokemon>>).data.size > 0).isTrue()
-    }
-
-    @Test
-    fun `getAll pokemons with invalid page, gives error response`() {
-        val page = -1
-        detailViewModel.getAllPokemons(page)
-        val pokemons = detailViewModel.pokemons.getOrAwaitValue()
-        assertThat((pokemons is Resource.Error<List<Pokemon>>)).isTrue()
+        detailViewModel.getPokemonDetail("Fake Pokemon")
+        val pokemon = detailViewModel.pokemonDetail.getOrAwaitValue()
+        assertThat((pokemon as Resource.Success<PokemonDetail>).data.name == "Fake Pokemon").isTrue()
     }
 
     @After fun tearDown() {

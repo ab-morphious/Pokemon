@@ -29,10 +29,10 @@ class GetPokemonDetailsUseCaseTest {
     }
 
     @Test
-    fun `Get all pokemon, returns correct pokemons`() {
-        val subscribe = getPokemonDetailsUseCase.invoke(0)
-            .subscribeOn(schedulerProvider.io()).subscribe { pokemons ->
-                assertThat(pokemons.size == 0).isTrue()
+    fun `Get pokemon detail, returns correct pokemon`() {
+        val subscribe = getPokemonDetailsUseCase.invoke("Fake Pokemon")
+            .subscribeOn(schedulerProvider.io()).subscribe { pokemon ->
+                assertThat(pokemon.name.equals("Fake Pokemon")).isTrue()
             }
     }
 
