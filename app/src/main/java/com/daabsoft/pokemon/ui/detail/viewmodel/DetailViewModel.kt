@@ -1,4 +1,4 @@
-package com.daabsoft.pokemon.ui.home.viewmodel
+package com.daabsoft.pokemon.ui.detail.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

@@ -55,9 +55,15 @@ class GetPokemonsRxRemoteMediator @Inject constructor(
                         limit = PAGE_SIZE,
                         offset = page * PAGE_SIZE
                     )
-                        .map { insertToDb(page, loadType, it.pokemons.map { it.toDomain() }.map { it.toEntitiy(page) }) }
-                        .map<MediatorResult> { MediatorResult.Success(endOfPaginationReached = false) }
-                        .onErrorReturn { MediatorResult.Error(it) }
+                        .map {
+                            insertToDb(page, loadType, it.pokemons.map { it.toDomain() }.map { it.toEntitiy(page) })
+                        }
+                        .map<MediatorResult> {
+                            MediatorResult.Success(endOfPaginationReached = false)
+                        }
+                        .onErrorReturn {
+                            MediatorResult.Error(it)
+                        }
                 }
             }
     }

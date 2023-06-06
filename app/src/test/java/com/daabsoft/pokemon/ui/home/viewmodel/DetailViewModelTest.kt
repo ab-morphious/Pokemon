@@ -6,6 +6,7 @@ import com.daabsoft.pokemon.core.TestSchedulerProvider
 import com.daabsoft.pokemon.data.FakePokemonRepository
 import com.daabsoft.pokemon.domain.models.PokemonDetail
 import com.daabsoft.pokemon.domain.usecases.GetPokemonDetailsUseCase
+import com.daabsoft.pokemon.ui.detail.viewmodel.DetailViewModel
 import com.daabsoft.utils.getOrAwaitValue
 import com.google.common.truth.Truth.assertThat
 import org.junit.After

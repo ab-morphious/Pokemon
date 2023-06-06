@@ -1,4 +1,4 @@
-package com.daabsoft.pokemon.ui.home.fragment
+package com.daabsoft.pokemon.ui.detail.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -15,7 +15,7 @@ import com.daabsoft.pokemon.core.Resource
 import com.daabsoft.pokemon.databinding.FragmentDetailBinding
 import com.daabsoft.pokemon.domain.models.Pokemon
 import com.daabsoft.pokemon.domain.models.PokemonDetail
-import com.daabsoft.pokemon.ui.home.viewmodel.DetailViewModel
+import com.daabsoft.pokemon.ui.detail.viewmodel.DetailViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

@@ -25,8 +25,8 @@ class GetPokemonRxRemoteRepositoryImpl @Inject constructor(
             config = PagingConfig(
                 PAGE_SIZE,
                 enablePlaceholders = true,
-                maxSize = PAGE_SIZE + 20,
-                prefetchDistance = 1,
+                maxSize = PAGE_SIZE + 2 * 5,
+                prefetchDistance = 5,
                 initialLoadSize = PAGE_SIZE
             ),
             remoteMediator = remoteMediator,

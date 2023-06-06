@@ -5,7 +5,7 @@ import androidx.paging.LoadState
 import androidx.paging.LoadStateAdapter
 import com.daabsoft.pokemon.ui.home.viewholder.LoadingStateViewHolder
 
-class LoadingStateAdapter: LoadStateAdapter<LoadingStateViewHolder>() {
+class LoadingStateAdapter : LoadStateAdapter<LoadingStateViewHolder>() {
     override fun onBindViewHolder(holder: LoadingStateViewHolder, loadState: LoadState) {
         holder.bind(loadState)
     }
