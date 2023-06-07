@@ -15,3 +15,5 @@ RxJava2 - for reactive programming
 Jetpack Libraries (LiveData, Room, ViewModel, Lifecycle, Navigation Component, etc)
 
 JUnit for unit testing
+
+Light and Dark Mode 🌘
