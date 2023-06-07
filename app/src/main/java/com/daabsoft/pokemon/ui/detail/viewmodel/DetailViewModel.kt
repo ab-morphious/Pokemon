@@ -9,6 +9,8 @@ import com.daabsoft.pokemon.domain.models.PokemonDetail
 import com.daabsoft.pokemon.domain.usecases.GetPokemonDetailsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import io.reactivex.disposables.CompositeDisposable
+import retrofit2.HttpException
+import java.io.IOException
 import javax.inject.Inject
 
 @HiltViewModel class DetailViewModel @Inject constructor(
@@ -29,9 +31,13 @@ import javax.inject.Inject
                 .observeOn(schedulerProvider.ui())
                 .subscribe({ pokemonDetail ->
                     _pokemonDetail.postValue(Resource.Success(pokemonDetail))
-                }, {
-                    _pokemonDetail.postValue(Resource.Error(message = it.localizedMessage))
-                })
+                }) {
+                    when (it) {
+                        is IOException -> _pokemonDetail.postValue(Resource.Error(message = "Network error!"))
+                        is HttpException -> _pokemonDetail.postValue(Resource.Error(message = "Request failed!"))
+                        else -> _pokemonDetail.postValue(Resource.Error(message = it.localizedMessage))
+                    }
+                }
         )
     }
 
