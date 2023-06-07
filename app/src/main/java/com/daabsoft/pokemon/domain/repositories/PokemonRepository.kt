@@ -6,7 +6,7 @@ import io.reactivex.Single
 interface PokemonRepository {
     /**
      * get pokemon detail information
-     * @param id
+     * @param name
      */
     fun getPokemonDetail(name: String): Single<PokemonDetail>
 }

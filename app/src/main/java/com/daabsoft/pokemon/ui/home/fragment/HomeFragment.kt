@@ -36,6 +36,7 @@ class HomeFragment : Fragment(), CellClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupHomeFragment()
+        setupLoadStateObserver()
     }
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -59,6 +60,18 @@ class HomeFragment : Fragment(), CellClickListener {
             footer = LoadingGridStateAdapter()
         )
 
+        homeRxViewModel.pokemonPagingData.observe(viewLifecycleOwner) {
+            pokemonRxAdapter.submitData(lifecycle, it)
+        }
+    }
+
+    override fun onCellClickListener(pokemon: Pokemon) {
+        val bundle = Bundle()
+        bundle.putParcelable(keyArgsPokemon, pokemon)
+        navController.navigate(R.id.action_homeFragment_to_detailFragment, bundle)
+    }
+
+    private fun setupLoadStateObserver() {
         pokemonRxAdapter.addLoadStateListener { loadState ->
             val errorState = loadState.source.append as? LoadState.Error
                 ?: loadState.source.prepend as? LoadState.Error
@@ -66,31 +79,21 @@ class HomeFragment : Fragment(), CellClickListener {
                 ?: loadState.prepend as? LoadState.Error
 
             errorState?.let {
-                AlertDialog.Builder(requireContext())
-                    .setTitle(R.string.error)
-                    .setMessage(it.error.localizedMessage)
-                    .setNegativeButton(R.string.cancel) { dialog, _ ->
-                        dialog.dismiss()
-                    }
-                    .setPositiveButton(R.string.retry) { _, _ ->
-                        pokemonRxAdapter.retry()
-                    }
-                    .show()
+                showErrorDialog(it)
             }
         }
-
-        homeRxViewModel.pokemonPagingData.observe(viewLifecycleOwner) {
-            pokemonRxAdapter.submitData(lifecycle, it)
-        }
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-    }
-
-    override fun onCellClickListener(pokemon: Pokemon) {
-        val bundle = Bundle()
-        bundle.putParcelable(keyArgsPokemon, pokemon)
-        navController.navigate(R.id.action_homeFragment_to_detailFragment, bundle)
+    private fun showErrorDialog(errorState: LoadState.Error) {
+        AlertDialog.Builder(requireContext())
+            .setTitle(R.string.error)
+            .setMessage(errorState.error.localizedMessage)
+            .setNegativeButton(R.string.cancel) { dialog, _ ->
+                dialog.dismiss()
+            }
+            .setPositiveButton(R.string.retry) { _, _ ->
+                pokemonRxAdapter.retry()
+            }
+            .show()
     }
 }

@@ -10,7 +10,6 @@ import com.daabsoft.pokemon.data.local.PokemonDatabase
 import com.daabsoft.pokemon.data.local.entity.PokemonEntity
 import com.daabsoft.pokemon.data.remote.services.PokemonService
 import io.reactivex.Single
-import java.io.InvalidObjectException
 import javax.inject.Inject
 
 @OptIn(ExperimentalPagingApi::class)

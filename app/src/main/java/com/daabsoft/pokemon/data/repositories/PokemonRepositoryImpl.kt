@@ -8,8 +8,9 @@ import com.daabsoft.pokemon.domain.models.PokemonDetail
 import com.daabsoft.pokemon.domain.models.toEntity
 import com.daabsoft.pokemon.domain.repositories.PokemonRepository
 import io.reactivex.Single
+import javax.inject.Inject
 
-class PokemonRepositoryImpl constructor(
+class PokemonRepositoryImpl @Inject constructor(
     private val pokemonApi: PokemonService,
     private val pokemonDao: PokemonDao,
     private val schedulerProvider: BaseSchedulerProvider
