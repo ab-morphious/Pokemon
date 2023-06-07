@@ -28,14 +28,16 @@ class HomeRxViewModel @Inject constructor(
     }
 
     fun getAllPokemonsRx() {
-        repository
-            .getPokemons()
-            .cachedIn(viewModelScope)
-            .subscribeOn(schedulerProvider.io())
-            .observeOn(schedulerProvider.ui())
-            .subscribe {
-                _pokemonPagingData.postValue(it.map { it.toDomain() })
-            }
+        compositeDisposable.add(
+            repository
+                .getPokemons()
+                .cachedIn(viewModelScope)
+                .subscribeOn(schedulerProvider.io())
+                .observeOn(schedulerProvider.ui())
+                .subscribe {
+                    _pokemonPagingData.postValue(it.map { it.toDomain() })
+                }
+        )
     }
 
     override fun onCleared() {
