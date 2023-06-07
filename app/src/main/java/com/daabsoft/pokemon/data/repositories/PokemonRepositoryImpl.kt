@@ -23,5 +23,6 @@ class PokemonRepositoryImpl @Inject constructor(
                 pokemonDao.insertPokemonDetail(pokemonDetail.toEntity())
                 pokemonDao.getPokemonDetail(name)
             }
+            .onErrorResumeNext(pokemonDao.getPokemonDetail(name))
     }
 }
