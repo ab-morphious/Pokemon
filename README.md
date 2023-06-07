@@ -6,7 +6,7 @@ Pokemon App allows you to browse all Pokemons, and view their detail information
 
 Clean Architecture + MVVM
 
-Paging 3 Library - efficinet pagination, with repository pattern (RemoteMediator)
+Paging 3 Library - efficient pagination, with repository pattern (RemoteMediator)
 
 Dagger-Hilt - for dependency injection
 
