@@ -7,13 +7,14 @@ import androidx.paging.rxjava2.cachedIn
 import com.daabsoft.pokemon.core.BaseSchedulerProvider
 import com.daabsoft.pokemon.domain.models.Pokemon
 import com.daabsoft.pokemon.domain.repositories.PokemonRxRepository
+import com.daabsoft.pokemon.domain.usecases.GetAllPokemonsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import io.reactivex.disposables.CompositeDisposable
 import javax.inject.Inject
 
 @HiltViewModel
 class HomeRxViewModel @Inject constructor(
-    private val repository: PokemonRxRepository,
+    private val getAllPokemonsUseCase: GetAllPokemonsUseCase,
     private val schedulerProvider: BaseSchedulerProvider
 ) : ViewModel() {
 
@@ -29,8 +30,7 @@ class HomeRxViewModel @Inject constructor(
 
     fun getAllPokemonsRx() {
         compositeDisposable.add(
-            repository
-                .getPokemons()
+            getAllPokemonsUseCase()
                 .cachedIn(viewModelScope)
                 .subscribeOn(schedulerProvider.io())
                 .observeOn(schedulerProvider.ui())
