@@ -16,4 +16,4 @@ Jetpack Libraries (LiveData, Room, ViewModel, Lifecycle, Navigation Component, e
 
 JUnit for unit testing
 
-Light and Dark Mode 🌘
+Light and Dark Mode support 🌘
